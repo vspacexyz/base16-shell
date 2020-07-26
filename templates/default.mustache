@@ -27,6 +27,7 @@ color20="{{base04-hex-r}}/{{base04-hex-g}}/{{base04-hex-b}}" # Base 04
 color21="{{base06-hex-r}}/{{base06-hex-g}}/{{base06-hex-b}}" # Base 06
 color_foreground="{{base05-hex-r}}/{{base05-hex-g}}/{{base05-hex-b}}" # Base 05
 color_background="{{base00-hex-r}}/{{base00-hex-g}}/{{base00-hex-b}}" # Base 00
+base16_scheme="{{scheme-name}}"
 
 if [ -n "$TMUX" ]; then
   # Tell tmux to pass the escape sequences through
@@ -95,6 +96,10 @@ else
   fi
   put_template_custom 12 ";7" # cursor (reverse video)
 fi
+
+# Useful for other applications
+echo $color00 > ~/.base16bg
+echo $color07 > ~/.base16fg
 
 # clean up
 unset -f put_template
