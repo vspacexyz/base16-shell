@@ -27,6 +27,12 @@ _base16()
       [ -f "$hook" ] && [ -x "$hook" ] && "$hook"
     done
   fi
+
+  zathura_config=${script##*/}
+  zathura_config=${zathura_config%.sh}
+  zathura_config="${zathura_config}.config"
+  zathura_config_path="$HOME/admin/base16-builder-php/templates/zathura/colors/$zathura_config"
+  ln -fs $zathura_config_path ~/.config/zathura/zathurarc
 }
 FUNC
 for script in "$script_dir"/scripts/base16*.sh; do
