@@ -33,6 +33,13 @@ _base16()
   zathura_config="${zathura_config}.config"
   zathura_config_path="$HOME/admin/base16-builder-php/templates/zathura/colors/$zathura_config"
   ln -fs $zathura_config_path ~/.config/zathura/zathurarc
+
+  tmux_config=${script##*/}
+  tmux_config=${tmux_config%.sh}
+  tmux_config="${tmux_config}.conf"
+  tmux_config_path="$HOME/admin/base16-builder-php/templates/tmux/colors/$tmux_config"
+  ln -fs $tmux_config_path ~/.tmux.conf
+  tmux source-file ~/.tmux.conf
 }
 FUNC
 for script in "$script_dir"/scripts/base16*.sh; do
