@@ -40,6 +40,18 @@ _base16()
   tmux_config_path="$HOME/admin/base16-builder-php/templates/tmux/colors/$tmux_config"
   ln -fs $tmux_config_path ~/.tmux.conf
   tmux source-file ~/.tmux.conf
+
+  dwm_config=${script##*/}
+  dwm_config=${dwm_config%.sh}
+  dwm_config="${dwm_config}.diff"
+  dwm_config_path="$HOME/admin/base16-builder-php/templates/dwm/diffs/$dwm_config"
+  if [[ -f ~/admin/dwm/base16.diff ]];
+  then
+  	(cd ~/admin/dwm && patch -p1 -R <base16.diff)
+  fi
+  cp $dwm_config_path ~/admin/dwm/base16.diff
+  CURDIR=$(pwd)
+  (cd ~/admin/dwm && patch -p1 <base16.diff && make) && sudo bash -c 'cd /home/vector/admin/dwm && make install' && killall dwm && (dwm &)
 }
 FUNC
 for script in "$script_dir"/scripts/base16*.sh; do
