@@ -52,6 +52,19 @@ _base16()
   cp $dwm_config_path ~/admin/dwm/base16.diff
   CURDIR=$(pwd)
   (cd ~/admin/dwm && patch -p1 <base16.diff && make) >/dev/null && echo 'dwm patched!'
+
+  gtk2_config=${script##*/}
+  gtk2_config=${gtk2_config%.sh}
+  gtk2_config="${gtk2_config}-gtkrc"
+  gtk2_config_path="/home/vector/admin/base16-builder-php/templates/gtk-flatcolor/gtk-2/$gtk2_config"
+  ln -fs $gtk2_config_path ~/.local/share/themes/flatcolor/gtk-2.0/gtkrc
+
+  gtk3_config=${script##*/}
+  gtk3_config=${gtk3_config%.sh}
+  gtk3_config="${gtk3_config}-gtk.css"
+  gtk3_config_path="/home/vector/admin/base16-builder-php/templates/gtk-flatcolor/gtk-3/$gtk3_config"
+  ln -fs $gtk3_config_path ~/.local/share/themes/flatcolor/gtk-3.0/gtk.css
+  ln -fs $gtk3_config_path ~/.local/share/themes/flatcolor/gtk-3.20/gtk.css
 }
 FUNC
 for script in "$script_dir"/scripts/base16*.sh; do
