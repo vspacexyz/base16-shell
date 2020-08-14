@@ -51,7 +51,7 @@ _base16()
   fi
   cp $dwm_config_path ~/admin/dwm/base16.diff
   CURDIR=$(pwd)
-  (cd ~/admin/dwm && patch -p1 <base16.diff && make) && sudo bash -c 'cd /home/vector/admin/dwm && make install' && killall dwm && (dwm &)
+  (cd ~/admin/dwm && patch -p1 <base16.diff && make) >/dev/null && echo 'dwm patched!'
 }
 FUNC
 for script in "$script_dir"/scripts/base16*.sh; do
